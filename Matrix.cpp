@@ -22,30 +22,23 @@ std::size_t Matrix::getSize() const {
 }
 
 int Matrix::getElementAt(size_t row, size_t column) {
-    assert(row < size);
-    assert(column < size);
     return matrix[row][column];
 }
 
 void Matrix::setElementAt(std::size_t row, std::size_t column, int v) {
-    assert(row < size);
-    assert(column < size);
     matrix[row][column] = v;
 }
 
 vector_t Matrix::getRowAt(std::size_t row) {
-    assert(row < size);
     return matrix[row];
 }
 
 void Matrix::setRowAt(std::size_t row, const vector_t& v) {
-    assert(row < size);
     assert(v.size() == size);
     matrix[row] = v;
 }
 
 vector_t Matrix::getColumnAt(std::size_t column) {
-    assert(column < size);
     vector_t res;
     for (std::size_t i=0; i<size; i++)
         res.push_back(matrix[i][column]);
@@ -53,10 +46,25 @@ vector_t Matrix::getColumnAt(std::size_t column) {
 }
 
 void Matrix::setColumnAt(std::size_t column, const vector_t& v) {
-    assert(column < size);
     assert(v.size() == size);
     for (std::size_t i=0; i<size; i++)
         matrix[i][column] = v[i];
+}
+
+int* Matrix::getDataAsArray() {
+    int* data = new int[size*size];
+    for (int i=0; i<size; i++) {
+        for (int j=0; j<size; j++) {
+            data[i*size+j] = matrix[i][j];
+        }
+    }
+    return data;
+}
+
+void Matrix::setDataFromArray(const int* data) {
+    for (int i=0; i<size*size; i++) {
+        matrix[i/size][i%size] = data[i];
+    }
 }
 
 

@@ -28,6 +28,9 @@ public:
     vector_t getColumnAt(std::size_t column);
     void setColumnAt(std::size_t column, const vector_t& v);
 
+    int* getDataAsArray();
+    void setDataFromArray(const int* data);
+
     friend std::ostream& operator << (std::ostream &out, const Matrix &m);
     friend bool operator==(const Matrix& m1, const Matrix& m2);
     friend bool operator!=(const Matrix& m1, const Matrix& m2);

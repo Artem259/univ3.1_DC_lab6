@@ -8,24 +8,41 @@ MatrixMultiplicationMPI::MatrixMultiplicationMPI(Matrix m1, Matrix m2) : m1(std:
     assert(this->m1.getSize() == this->m2.getSize());
     startTime = 0;
     finishTime = 0;
+    size = this->m1.getSize();
+    procSize = 0;
+    procRank = 0;
+    MPI_Comm_size(MPI_COMM_WORLD, &procSize);
+    MPI_Comm_rank(MPI_COMM_WORLD, &procRank);
+    assert(procRank == 0);
+}
+
+MatrixMultiplicationMPI::MatrixMultiplicationMPI() : m1(0), m2(0), result(0)  {
+    startTime = 0;
+    finishTime = 0;
+    size = 0;
+    procSize = 0;
+    procRank = 0;
+    MPI_Comm_size(MPI_COMM_WORLD, &procSize);
+    MPI_Comm_rank(MPI_COMM_WORLD, &procRank);
+    assert(procRank != 0);
 }
 
 void MatrixMultiplicationMPI::startTimePoint() {
-    auto time = std::chrono::system_clock::now().time_since_epoch();
-    startTime = std::chrono::duration_cast<std::chrono::microseconds>(time).count();
+    startTime = static_cast<unsigned long long>(MPI_Wtime()*1000);
 }
 
 void MatrixMultiplicationMPI::finishTimePoint() {
-    auto time = std::chrono::system_clock::now().time_since_epoch();
-    finishTime = std::chrono::duration_cast<std::chrono::microseconds>(time).count();
+    finishTime = static_cast<unsigned long long>(MPI_Wtime()*1000);
 }
 
 unsigned long long MatrixMultiplicationMPI::getRunningTime() const {
+    assert(procRank == 0);
     assert(finishTime != 0);
     return finishTime - startTime;
 }
 
 Matrix MatrixMultiplicationMPI::getResult() const {
+    assert(procRank == 0);
     assert(finishTime != 0);
     return result;
 }
