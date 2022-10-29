@@ -150,7 +150,7 @@ void FoxMatrixMultiplicationMPI::run() {
         assert(procSize == GridSize*GridSize);
     }
 
-    // Creating the cartesian grid, row and column communcators
+    // Creating the cartesian grid, row and column communicators
     CreateGridCommunicators();
     // Memory allocation and initialization of matrix elements
     ProcessInitialization();

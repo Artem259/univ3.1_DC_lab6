@@ -1,6 +1,5 @@
 #include "MatrixMultiplicationMPI.h"
 
-#include <chrono>
 #include <cassert>
 #include <utility>
 
