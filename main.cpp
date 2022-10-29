@@ -4,6 +4,7 @@
 
 #include "OrdinaryMatrixMultiplicationMPI.h"
 #include "FoxMatrixMultiplicationMPI.h"
+#include "CannonMatrixMultiplicationMPI.h"
 
 // mpiexec -n 4 univ3_1_DC_lab6.exe
 int main(int argc, char *argv[]) {
@@ -13,9 +14,9 @@ int main(int argc, char *argv[]) {
     MPI_Comm_rank(MPI_COMM_WORLD, &procRank);
 
     std::vector<unsigned> sizes = {504, 1002, 1500, 2004, 2502, 3000};
-    std::size_t N1 = 2;
-    std::size_t N2 = 1;
-    using type = FoxMatrixMultiplicationMPI;
+    std::size_t N1 = 10;
+    std::size_t N2 = 10;
+    using type = CannonMatrixMultiplicationMPI;
 
     if (procRank == 0) {
         for (std::size_t i=0; i<N1; i++) {

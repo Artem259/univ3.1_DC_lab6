@@ -14,6 +14,8 @@ add_executable(univ3_1_DC_lab6
         FoxMatrixMultiplicationMPI.cpp
         FoxMatrixMultiplicationMPI.h
         OrdinaryMatrixMultiplicationMPI.cpp
-        OrdinaryMatrixMultiplicationMPI.h)
+        OrdinaryMatrixMultiplicationMPI.h
+        CannonMatrixMultiplicationMPI.cpp
+        CannonMatrixMultiplicationMPI.h)
 
 target_link_libraries(univ3_1_DC_lab6 PUBLIC MPI::MPI_CXX)
