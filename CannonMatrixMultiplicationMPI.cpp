@@ -73,7 +73,7 @@ void CannonMatrixMultiplicationMPI::MatrixScatter(int* pMatrix, int* pMatrixBloc
 }
 
 void CannonMatrixMultiplicationMPI::DataDistribution() {
-    // Scatter the matrix among the processes of the first grid column
+    // Scatter matrices among the processes
     MatrixScatter(pAMatrix, pAblock);
     MatrixScatter(pBMatrix, pBblock);
 

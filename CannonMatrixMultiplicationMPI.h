@@ -35,7 +35,7 @@ class CannonMatrixMultiplicationMPI : public MatrixMultiplicationMPI {
     // Function for memory allocation and data initialization
     void ProcessInitialization();
 
-    // Function for checkerboard matrix decomposition
+    // Function for matrix decomposition
     void MatrixScatter(int* pMatrix, int* pMatrixBlock);
 
     // Data distribution among the processes
